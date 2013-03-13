@@ -26,7 +26,7 @@ irgb - Displayable color values expressed as red, green and blue values, in the 
 
 Luv - A nearly perceptually uniform color space.
 
-Lab - Another nearly perceptually uniform color space.
+Lab - Another nearly perceptually uniform color space.  (This is L*a*b* space, not "Hunter Lab" space.)
 
 As far as I know, the Luv and Lab spaces are of similar quality.
 Neither is perfect, so perhaps try each, and see what works best for your application.
@@ -500,8 +500,8 @@ def init_Luv_Lab_white_point (white_point):
 
 L_LUM_A      = 116.0
 L_LUM_B      = 16.0
-L_LUM_C      = 903.29629551307664
-L_LUM_CUTOFF = 0.008856
+L_LUM_C      = 24389.0/27.0 # 903.29629551307664...
+L_LUM_CUTOFF = (6/29)**3    # 0.008856...
 
 def L_luminance (y):
     '''L coefficient for Luv and Lab models.'''
@@ -559,7 +559,7 @@ def uv_primes_inverse (u_prime, v_prime, y):
 #     The linear range coefficient has more digits than in the paper,
 #     this makes the function more continuous over the boundary.
 
-LAB_F_A = 7.7870370302851422
+LAB_F_A = 1.0/3.0 * math.pow (6.0/29.0, -2.0) # 7.7870370302851422
 LAB_F_B = (16.0/116.0)
 # same cutoff as L_luminance()
 
