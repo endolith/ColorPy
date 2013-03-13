@@ -597,7 +597,7 @@ def luv_from_xyz (xyz):
     return luv
 
 def xyz_from_luv (luv):
-    '''Convert Luv to CIE XYZ.  Inverse of luv_from_xyz().'''
+    '''Convert L*u*v* to CIE XYZ.  Inverse of luv_from_xyz().'''
     L = luv [0]
     u = luv [1]
     v = luv [2]
@@ -620,7 +620,7 @@ def xyz_from_luv (luv):
 # and the almost perceptually uniform space Lab.
 
 def lab_from_xyz (xyz):
-    '''Convert color from CIE XYZ to Lab.'''
+    '''Convert color from CIE XYZ to L*a*b*.'''
     x = xyz [0]
     y = xyz [1]
     z = xyz [2]
@@ -640,7 +640,7 @@ def lab_from_xyz (xyz):
     return Lab
 
 def xyz_from_lab (Lab):
-    '''Convert color from Lab to CIE XYZ.  Inverse of lab_from_xyz().'''
+    '''Convert color from L*a*b* to CIE XYZ.  Inverse of lab_from_xyz().'''
     L = Lab [0]
     a = Lab [1]
     b = Lab [2]
@@ -710,7 +710,7 @@ def simple_gamma_correct (x):
 
 # sRGB gamma correction - http://www.color.org/sRGB.xalter
 # The effect of the equations is to closely fit a straightforward
-# gamma 2.2 curve with an slight offset to allow for invertability in
+# gamma 2.2 curve with a slight offset to allow for invertability in
 # integer math. Therefore, we are maintaining consistency with the
 # gamma 2.2 legacy images and the video industry.
 
@@ -762,7 +762,7 @@ def init_gamma_correction (
     gamma_exponent = gamma
 
 #
-# Color clipping - Physical color values may exceed the what the display can show,
+# Color clipping - Physical color values may exceed what the display can show,
 #   either because the color is too pure (indicated by negative rgb values), or
 #   because the color is too bright (indicated by rgb values > 1.0).
 #   These must be clipped to something displayable.
